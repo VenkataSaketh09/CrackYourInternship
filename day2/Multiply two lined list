@@ -1,0 +1,11 @@
+def multiply_two_lists(self, first, second):
+        # Code here
+        modulo=10**9+7
+        val1,val2=0,0
+        while first:
+            val1=(val1*10+first.data)%modulo
+            first=first.next
+        while second:
+            val2=(val2*10+second.data)%modulo
+            second=second.next
+        return (val1*val2)%modulo
