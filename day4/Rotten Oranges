@@ -1,0 +1,48 @@
+from collections import deque
+class Solution:
+	def orangesRotting(self, grid):
+		#Code here
+		fresh_oranges=0
+		time=0
+		Que=deque()
+		m=len(grid)  #rows
+		n=len(grid[0])  #columns
+		matrix_directions=[(0,1),(1,0),(0,-1),(-1,0)]
+		
+		for i in range(m):
+		    for j in range(n):
+		        if grid[i][j]==1:
+		            fresh_oranges+=1
+		        elif grid[i][j]==2:
+		            Que.append((i,j))
+	    while Que and fresh_oranges>0:
+		    for _ in range(len(Que)):
+		        p,q=Que.popleft()
+		        
+		        for x,y in matrix_directions:
+		            updated_x,updated_y=p+x,q+y
+		            
+		            if 0<=updated_x<m and 0<=updated_y<n and grid[updated_x][updated_y]==1:
+		                grid[updated_x][updated_y]=2
+		                Que.append((updated_x,updated_y))
+		                fresh_oranges-=1
+	        time+=1
+	    return time if fresh_oranges==0 else -1
+
+#{ 
+ # Driver Code Starts
+from queue import Queue
+
+
+T=int(input())
+for i in range(T):
+	n, m = map(int, input().split())
+	grid = []
+	for _ in range(n):
+		a = list(map(int, input().split()))
+		grid.append(a)
+	obj = Solution()
+	ans = obj.orangesRotting(grid)
+	print(ans)
+
+# } Driver Code Ends
