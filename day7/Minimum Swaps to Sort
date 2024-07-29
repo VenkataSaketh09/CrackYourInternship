@@ -1,0 +1,18 @@
+class Solution:
+    
+    #Function to find the minimum number of swaps required to sort the array.
+	def minSwaps(self, nums):
+		#Code here
+		count=0
+		temp=sorted(nums)
+		
+		di={nums[i]:i for i in range(len(nums))}
+		
+		for i in range(len(nums)):
+		    if nums[i]!=temp[i]:
+		        count+=1
+		        val=temp[i]
+		        nums[i],nums[di[val]]=nums[di[val]],nums[i]
+		        
+		        di[nums[di[val]]],di[val]=di[val],i
+        return count
