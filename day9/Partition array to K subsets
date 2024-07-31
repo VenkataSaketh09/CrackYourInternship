@@ -1,0 +1,20 @@
+def isKPartitionPossible(self, a, k):
+        #code here
+        val=sum(a)
+        sub=[0]*k
+        if val%k!=0:
+            return False
+        target=val//k
+        def finding(index,n,target,sub):
+            if index==n:
+                return True
+            for i in range(k):
+                if sub[i]+a[index]<=target:
+                    sub[i]+=a[index]
+                    if finding(index+1,n,target,sub):
+                        return True
+                    sub[i]-=a[index]
+                    if sub[i]==0:
+                        break
+            return False
+        return finding(0,len(a),target,sub)
