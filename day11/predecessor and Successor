@@ -1,0 +1,17 @@
+def findPreSuc(self, root, pre, suc, key):
+        # Your code goes here
+        node1=root
+        node2=root
+        while node1:
+            if node1.key>=key:
+                node1=node1.left
+            else:
+                pre.key=node1.key
+                node1=node1.right
+        while node2:
+            if node2.key<=key:
+                node2=node2.right
+            else:
+                suc.key=node2.key
+                node2=node2.left
+        return pre,suc
