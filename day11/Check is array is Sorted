@@ -1,0 +1,21 @@
+def checkReverse(arr, n): 
+    dummy = [0] * n 
+    dummy=arr 
+  
+    dummy.sort() 
+  
+    for first in range(n): 
+        if dummy[first] != arr[first]: 
+            break
+  
+    for last in range(n - 1, -1, -1): 
+        if dummy[back] != arr[back]: 
+            break
+  
+    if first >= last: 
+        return True
+    while first != last: 
+        first += 1
+        if arr[first - 1] < arr[first]: 
+            return False
+    return True
