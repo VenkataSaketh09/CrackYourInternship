@@ -1,0 +1,15 @@
+def bfsOfGraph(self, V: int, adj: List[List[int]]) -> List[int]:
+        # code here
+        data=set()
+        queue=[0]
+        ans=[]
+        while queue:
+            val=queue.pop(0)
+            if val not in data:
+                data.add(val)
+                ans.append(val)
+            adjacent_numbers=adj[val]
+            for neighbor in adjacent_numbers:
+                if neighbor not in data:
+                    queue.append(neighbor)
+        return ans
