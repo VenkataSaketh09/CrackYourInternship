@@ -1,0 +1,33 @@
+def fill(self, n, m, mat):
+        # code here
+        if not mat:
+            return mat
+        def dfs(x,y):
+            if x<0 or x>=n or y<0 or y>=m or mat[x][y]!='O':
+                return 
+            mat[x][y]='B'
+            dfs(x+1,y)
+            dfs(x-1,y)
+            dfs(x,y+1)
+            dfs(x,y-1)
+        
+        #for traversing the first and last columns
+        for i in range(n):
+            for j in [0,m-1]:
+                if mat[i][j]=='O':
+                    dfs(i,j)
+        
+        #for traversing the first and last rows
+        for i in range(m):
+            for j in [0,n-1]:
+                if mat[j][i]=='O':
+                    dfs(j,i)
+        
+        #now conversion
+        for i in range(n):
+            for j in range(m):
+                if mat[i][j]=='O':
+                    mat[i][j]='X'
+                elif mat[i][j]=='B':
+                    mat[i][j]='O'
+        return mat
