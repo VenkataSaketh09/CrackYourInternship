@@ -1,0 +1,7 @@
+def sameChar(self, A, B):
+        # code here
+        count=0
+        for i in range(len(A)):
+            if A[i].casefold()==B[i].casefold():
+                count+=1
+        return count
