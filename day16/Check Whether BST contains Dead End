@@ -1,0 +1,25 @@
+def isDeadEnd(self, root):
+        # Code here
+        leaf_nodes=set()
+        internal_nodes=set()
+        if root==None:
+            return False
+        def finding(root,internal_nodes,leaf_nodes):
+            if root==None:
+                return 
+            internal_nodes.add(root.data)
+            
+            if (root.left==None and root.right==None):
+                leaf_nodes.add(root.data)
+                return 
+            finding(root.left,internal_nodes,leaf_nodes)
+            finding(root.right,internal_nodes,leaf_nodes)
+        finding(root,internal_nodes,leaf_nodes)
+        
+        for i in leaf_nodes:
+            if((i+1) in internal_nodes and (i-1) in internal_nodes):
+                return True
+            elif i==1:
+                if 2 in internal_nodes:
+                    return True
+        return False
