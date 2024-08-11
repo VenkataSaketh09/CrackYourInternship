@@ -1,0 +1,18 @@
+def flatten(self, root):
+        #Your code here
+        values=[]
+        temp=root
+        while temp:
+            cur=temp
+            while cur:
+                values.append(cur.data)
+                cur=cur.bottom
+            temp=temp.next
+        values.sort()
+        
+        dummy=Node(values[0])
+        cur=dummy
+        for i in values[1:]:
+            cur.bottom=Node(i)
+            cur=cur.bottom
+        return dummy
