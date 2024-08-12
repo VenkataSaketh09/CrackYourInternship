@@ -1,0 +1,13 @@
+def tour(self,lis, n):
+        #Code here
+        position=0
+        cur_sum=0
+        total=0
+        for i in range(n):
+            cur_sum+=lis[i][0]-lis[i][1]
+            if cur_sum<0:
+                total+=cur_sum
+                cur_sum=0
+                position=i+1
+        total+=cur_sum
+        return position if total>=0 else -1
