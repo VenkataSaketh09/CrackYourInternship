@@ -1,0 +1,16 @@
+def Anagrams(self, words, n):
+        '''
+        words: list of word
+        n:      no of words
+        return : list of group of anagram {list will be sorted in driver code (not word in grp)}
+        '''
+        
+        #code here
+        di={}
+        for word in words:
+            val=''.join(sorted(word))
+            if val not in di:
+                di[val]=[word]
+            else:
+                di[val].append(word)
+        return list(di.values())
