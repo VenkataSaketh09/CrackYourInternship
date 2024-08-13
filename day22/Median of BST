@@ -1,0 +1,18 @@
+def findMedian(root):
+    # code here
+    # return the median
+    values=[]
+    def inorder(root,values):
+        if root:
+            inorder(root.left,values)
+            values.append(root.data)
+            inorder(root.right,values)
+    inorder(root,values)
+    middle=len(values)//2
+    if len(values) % 2 != 0:
+        return values[middle]
+    else:
+        if (values[middle] + values[middle-1]) % 2 == 0:
+            return (values[middle] + values[middle-1]) // 2
+        else:
+            return (values[middle] + values[middle-1]) / 2
