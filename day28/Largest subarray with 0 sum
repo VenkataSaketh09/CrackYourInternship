@@ -1,0 +1,14 @@
+def maxLen(self, n, arr):
+        #Code here
+        di={}
+        cur_sum=0
+        max_len=0
+        for i in range(n):
+            cur_sum+=arr[i]
+            if cur_sum==0:
+                max_len=i+1
+            if cur_sum in di:
+                max_len=max(max_len,i-di[cur_sum])
+            else:
+                di[cur_sum]=i
+        return max_len
