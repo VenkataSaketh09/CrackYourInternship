@@ -1,0 +1,15 @@
+def getCount(self,root,low,high):
+        ##Your code here
+        count=0
+        def inorder(root):
+            nonlocal count
+            if not root:
+                return
+            if root.data>low:
+                inorder(root.left)
+            if low<=root.data<=high:
+                count+=1
+            if root.data<high:
+                inorder(root.right)
+        inorder(root)
+        return count
