@@ -1,0 +1,26 @@
+def smallestWindow(self, s, p):
+        #code here
+        if not s or not p:
+            return ""
+        map_p=[0]*128
+        count=len(p)
+        min_len=float('inf')
+        left=0
+        right=0
+        ind=0
+        for char in p:
+            map_p[ord(char)]+=1
+        while right<len(s):
+            if map_p[ord(s[right])]>0:
+                count-=1
+            map_p[ord(s[right])]-=1
+            right+=1
+            while count==0:
+                if right-left<min_len:
+                    min_len=right-left
+                    ind=left
+                map_p[ord(s[left])]+=1
+                if map_p[ord(s[left])]>0:
+                    count+=1
+                left+=1
+        return "-1" if min_len==float('inf') else s[ind:ind+min_len]
