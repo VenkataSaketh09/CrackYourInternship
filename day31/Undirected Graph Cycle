@@ -1,0 +1,24 @@
+from typing import List
+from collections import deque
+class Solution:
+    #Function to detect cycle in an undirected graph.
+	def isCycle(self, V: int, adj: List[List[int]]) -> bool:
+		#Code here
+		visited=[False]*V
+		def dfs(start:int)->bool:
+		    que=deque([(start,-1)])
+		    visited[start]=True
+		    while que:
+		        node,parent=que.popleft()
+		        for neighbor in adj[node]:  #traverse the adjancent nodes of the current node.
+		            if not visited[neighbor]:
+		                visited[neighbor]=True
+		                que.append((neighbor,node))
+	                elif neighbor!=parent: #it means node visited but of different parent
+		                return True
+	        return False
+	    for i in range(V):
+	        if not visited[i]:
+	            if dfs(i):
+	                return True
+	    return False
