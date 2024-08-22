@@ -1,0 +1,20 @@
+class Solution:
+    def __init__(self):
+        self.count=0
+    def sumK(self,root,k):
+        
+        # code here
+        freq_map={0:1}
+        def Ksum(root,k,freq,csum):
+            if not root:
+                return
+            csum+=root.data
+            if csum-k in freq:
+                self.count+=freq[csum-k]
+            freq[csum]=freq.get(csum,0)+1
+            Ksum(root.left,k,freq,csum)
+            Ksum(root.right,k,freq,csum)
+            
+            freq[csum]-=1
+        Ksum(root,k,freq_map,0)
+        return self.count
