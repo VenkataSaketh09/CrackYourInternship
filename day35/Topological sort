@@ -1,0 +1,18 @@
+class Solution:
+    
+    #Function to return list containing vertices in Topological order.
+    def topoSort(self, V, adj):
+        # Code here
+        visited=[False]*V
+        stack=[]
+        def dfs(node):
+            visited[node]=True
+            for neighbor in adj[node]:
+                if not visited[neighbor]:
+                    dfs(neighbor)
+            stack.append(node)
+        
+        for i in range(V):
+            if not visited[i]:
+                dfs(i)
+        return stack[::-1]
