@@ -1,0 +1,8 @@
+from itertools import permutations
+class Solution:
+    def uniquePerms(self, arr, n):
+        # code here
+        combinations=permutations(arr)
+        unique_permutations=sorted(set(combinations))
+        ans=[list(combinations) for combinations in unique_permutations]
+        return ans
