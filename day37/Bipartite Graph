@@ -1,0 +1,24 @@
+from collections import deque
+class Solution:
+	def isBipartite(self, V, adj):
+		#code here
+		coloring=[-1]*V
+		
+		def bfs(start):
+		    que=deque([start])
+		    coloring[start]=0
+		    
+		    while que:
+		        node=que.popleft()
+		        for neighbor in adj[node]:
+		            if coloring[neighbor]==-1:
+		                coloring[neighbor]=1-coloring[node]
+		                que.append(neighbor)
+		            elif coloring[neighbor]==coloring[node]:
+		                return False
+	        return True
+		for i in range(V):
+		    if coloring[i]==-1:
+		        if not bfs(i):
+		            return False
+	    return True
