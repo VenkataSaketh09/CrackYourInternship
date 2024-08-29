@@ -1,0 +1,29 @@
+class Solution:
+    def reorderList(self, head):
+        # code here
+        
+        #find the middle element
+        slow,fast=head,head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        cur=slow.next
+        #reverse second half
+        slow.next=None
+        prev=None
+        
+        while cur:
+            next_node=cur.next
+            cur.next=prev
+            prev=cur
+            cur=next_node
+        
+        #merge two halfs
+        first=head
+        second=prev
+        while second:
+            first_next,second_next=first.next,second.next
+            first.next=second
+            second.next=first_next
+            first,second=first_next,second_next
+        return head
