@@ -1,0 +1,52 @@
+class Solution:
+    
+    #Function to find number of strongly connected components in the graph.
+    def kosaraju(self, V, adj):
+        # code here
+        
+        #dfs on normal graph
+        def dfs(node,stack,visited):
+            visited[node]=True
+            for neighbor in adj[node]:
+                if not visited[neighbor]:
+                    dfs(neighbor,stack,visited)
+            stack.append(node)
+        
+        #transposing the graph
+        def transpose(V,adj):
+            adjT=[[]for _ in range(V)]
+            for i in range(V):
+                for neighbor in adj[i]:
+                    adjT[neighbor].append(i)  #changing the direction
+            return adjT
+        
+        #dfs on transposed graph
+        def dfs_transposed(node,visited,adjT):
+            visited[node]=True
+            for neighbor in adjT[node]:
+                if not visited[neighbor]:
+                    dfs_transposed(neighbor,visited,adjT)
+        
+        
+                
+        
+        #step1:dfs traversal on the graph
+        stack=[]
+        visited=[False]*V
+        for i in range(V):
+            if not visited[i]:
+                dfs(i,stack,visited)
+        
+        #step2:transpose the graph
+        adjTranspose=transpose(V,adj)
+    
+        #step3:dfs on transposed graph
+        visited=[False]*V
+        scc_count=0
+        while stack:
+            node=stack.pop()
+            if not visited[node]:
+                dfs_transposed(node,visited,adjTranspose)
+                scc_count+=1
+                
+        return scc_count
