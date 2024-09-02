@@ -1,0 +1,20 @@
+class Solution:
+	def shortest_distance(self, matrix):
+		#Code here
+		n=len(matrix)
+		
+		#replacing the diagonal elements with 0
+		for i in range(n):
+		    for j in range(n):
+		        if matrix[i][j]==-1 and i!=j:
+		            matrix[i][j]=float('inf')
+		#algorithm
+		for via in range(n):
+		    for i in range(n):
+		        for j in range(n):
+		            matrix[i][j]=min(matrix[i][j],matrix[i][via]+matrix[via][j])
+	    #converting the remaining float('inf') values to -1
+	    for i in range(n):
+	        for j in range(n):
+	            if matrix[i][j]==float('inf'):
+	                matrix[i][j]=-1
