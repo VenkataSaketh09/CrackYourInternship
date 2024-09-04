@@ -1,0 +1,25 @@
+'''
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+'''
+class Solution:
+    def zigzag(self, head_node):
+        # Complete this function
+        temp=head_node
+        pos=0
+        while temp.next:
+            if pos%2==0:
+                if temp.data>temp.next.data:
+                    val=temp.data
+                    temp.next.data=temp.data
+                    temp.data=val
+            else:
+                if temp.data<temp.next.data:
+                    val=temp.data
+                    temp.next.data=temp.data
+                    temp.data=val
+            pos+=1
+            temp=temp.next
+        return head_node
