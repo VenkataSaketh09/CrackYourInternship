@@ -1,0 +1,21 @@
+class Solution:
+    def celebrity(self, mat):
+        # code here
+        n=len(mat)
+        i,j=0,n-1
+        while i<j:
+            if mat[i][j]==1:
+                #i knows j so i is not celebrity
+                i+=1
+            else:
+                #i doesnt know j so j cant be celebrity
+                j-=1
+        candid=i
+        
+        #this is for verification
+        for k in range(n):
+            if k!=candid:
+                #celebrity doesnt know anyone but everyone knows celebrity
+                if mat[k][candid]==0 or mat[candid][k]==1:
+                    return -1
+        return candid
